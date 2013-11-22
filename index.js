@@ -31,7 +31,7 @@ function Dumper(etcd) {
 // Get a JS object of the DB
 Dumper.prototype.dump = function() {
     return this.store.get('', {
-        recusrive: true
+        recursive: true
     })
     .then(cleanDump);
 };
