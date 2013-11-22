@@ -1,6 +1,6 @@
 {
     "name": "etcd-dump",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A tool for dumping and restoring etcd",
     "main": "index.js",
     "bin": {
