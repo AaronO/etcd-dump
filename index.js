@@ -17,7 +17,7 @@ function cleanDump(obj) {
         // We don't want the modifiedIndex attr in our dumps/restores
         return _.pick(obj, 'key', 'value');
     }
-    return _.flatten(_.map(obj.kvs, cleanInput));
+    return _.flatten(_.map(obj.kvs, cleanDump));
 }
 
 
