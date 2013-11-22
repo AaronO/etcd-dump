@@ -1,0 +1,32 @@
+{
+    "name": "etcd-dump",
+    "version": "0.0.1",
+    "description": "A tool for dumping and restoring etcd",
+    "main": "index.js",
+    "bin": {
+        "etcd-dump": "./bin/etcd-dump.js"
+    },
+    "dependencies": {
+        "q": "0.9.6",
+        "underscore": "1.4.4",
+        "eventemitter2": "0.4.13",
+
+        "qpatch": "0.0.3",
+
+        "commander": "2.0.0",
+
+        "node-etcd": "2.0.0"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AaronO/etcd-dump.git"
+    },
+    "keywords": [
+        "etcd",
+        "dump",
+        "restore"
+    ],
+    "author": "Aaron O'Mullan",
+    "license": "Apache v2"
+}
