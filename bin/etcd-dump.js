@@ -36,7 +36,7 @@ prog
 .action(function() {
     var entries = JSON.parse(fs.readFileSync(prog.file));
 
-    return dump.restore(entries)
+    return dumper.restore(entries)
     .then(function() {
         console.log('Restore succeeded');
     })
