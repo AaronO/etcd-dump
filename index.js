@@ -41,7 +41,7 @@ Dumper.prototype.restore = function(entries) {
     var self = this;
 
     return Q.all(_.map(entries, function(entry) {
-        return this.store.set(entry.key, entry.value);
+        return self.store.set(entry.key, entry.value);
     }));
 };
 
