@@ -11,13 +11,14 @@ var Etcd = qClass(require('node-etcd'), ['watcher']);
 // Since etcd create the dir keys automatically
 // transform the tree of keys
 // to contain only a flat array of leaves
-function cleanDump(obj) {
+function normalize(obj) {
+    obj = obj.node || obj;
     // Is a leaf
-    if(!_.has(obj, 'kvs')) {
+    if(!_.has(obj, 'nodes')) {
         // We don't want the modifiedIndex attr in our dumps/restores
         return _.pick(obj, 'key', 'value');
     }
-    return _.flatten(_.map(obj.kvs, cleanDump));
+    return _.flatten(_.map(obj.nodes, normalize));
 }
 
 
@@ -33,7 +34,7 @@ Dumper.prototype.dump = function() {
     return this.store.get('', {
         recursive: true
     })
-    .then(cleanDump);
+    .then(normalize);
 };
 
 // Restore a list of keys
@@ -52,3 +53,4 @@ function createDumper() {
 
 // Exports
 module.exports = createDumper;
+module.exports.normalize = normalize;
