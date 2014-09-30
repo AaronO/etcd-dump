@@ -22,9 +22,9 @@ function normalize(obj) {
 }
 
 
-function Dumper(etcd) {
+function Dumper(host, port) {
     // ETCD client
-    this.store = new Etcd();
+    this.store = new Etcd(host, port);
 
     _.bindAll(this);
 }
@@ -47,8 +47,8 @@ Dumper.prototype.restore = function(entries) {
 };
 
 // Restore the database from input data
-function createDumper() {
-    return new Dumper();
+function createDumper(host, port) {
+    return new Dumper(host, port);
 }
 
 // Exports
