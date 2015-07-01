@@ -1,6 +1,7 @@
 // Requires
 var Q = require('q');
 var _ = require('underscore');
+var fs = require('fs');
 
 var qClass = require('qpatch').qClass;
 
@@ -22,9 +23,9 @@ function normalize(obj) {
 }
 
 
-function Dumper(etcd) {
+function Dumper(host, port, sslopts) {
     // ETCD client
-    this.store = new Etcd();
+    this.store = new Etcd(host, port, sslopts);
 
     _.bindAll(this);
 }
@@ -47,8 +48,15 @@ Dumper.prototype.restore = function(entries) {
 };
 
 // Restore the database from input data
-function createDumper() {
-    return new Dumper();
+function createDumper(cfg) {
+    var hostAndPort = cfg.host.split(':');
+
+    var sslopts = {};
+    if(cfg.ca) sslopts.ca = [ fs.readFileSync(cfg.ca) ];
+    if(cfg.cert) sslopts.cert = [ fs.readFileSync(cfg.cert) ];
+    if(cfg.key) sslopts.key = [ fs.readFileSync(cfg.key) ];
+
+    return new Dumper(hostAndPort[0], hostAndPort[1], sslopts);
 }
 
 // Exports
