@@ -31,8 +31,9 @@ function Dumper(host, port, sslopts) {
 }
 
 // Get a JS object of the DB
-Dumper.prototype.dump = function() {
-    return this.store.get('', {
+Dumper.prototype.dump = function(path) {
+    if(!path) path = '';
+    return this.store.get(path, {
         recursive: true
     })
     .then(normalize);

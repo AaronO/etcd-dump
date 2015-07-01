@@ -18,7 +18,7 @@ var dumper = require('../');
 prog
 .version(pkg.version)
 .option('-f, --file [json_file]', 'Path to JSON dump file for dumping/storing', './etcd_dump.json')
-.option('-p, --path [path]', 'Root path to dump', '/')
+.option('-p, --path [path]', 'Root path to dump', '')
 .option('--pretty', 'Pretty output')
 .option('--host <localhost:4001>', 'ETCD Host Address and Port', 'localhost:4001')
 .option('--ca <CA-File>', 'Path to CA-File')
@@ -29,7 +29,7 @@ prog
 prog
 .command('dump')
 .action(function() {
-    return dumper(prog).dump()
+    return dumper(prog).dump(prog.path)
     .then(function(data) {
         // Write file to disk
         fs.writeFileSync(prog.file, JSON.stringify(data, null, prog.pretty ? 2 : 0));
