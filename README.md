@@ -49,4 +49,9 @@ $ etcd-dump
     -h, --help              output usage information
     -V, --version           output the version number
     -f, --file [json_file]  Path to JSON dump file for dumping/storing
+    --pretty                 Pretty output
+    --host <localhost:4001>  ETCD Host Address and Port
+    --ca <CA-File>           Path to CA-File
+    --cert <Cert-File>       Path to Cert-File
+    --key <Key-File>         Path to Key-File
 ```
